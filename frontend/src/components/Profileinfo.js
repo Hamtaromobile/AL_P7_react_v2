@@ -45,15 +45,16 @@ const Profileinfo = ({ idUser }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	if (
-		confirmPassword.length > 0 &&
-		password === confirmPassword &&
-		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&,.;:!^¨*])[A-Za-z\d!@#$%^&,.;:!^¨*]{8,30}$/.test(
-			password
-		)
-	) {
-		setNewPassword(true);
-	}
+	useEffect(() => {
+		if (
+			confirmPassword.length > 0 &&
+			password === confirmPassword &&
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/.test(password)
+		) {
+			setNewPassword(true);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [password]);
 
 	const firstNameOnChange = (e) => {
 		setFirstName(e.target.value);
@@ -108,9 +109,7 @@ const Profileinfo = ({ idUser }) => {
 	const passwordOnChange = (e) => {
 		setPassword(e.target.value);
 		if (
-			!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&,.;:!^¨*])[A-Za-z\d!@#$%^&,.;:!^¨*]{8,30}$/.test(
-				e.target.value
-			)
+			!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/.test(e.target.value)
 		) {
 			setAllowSendPassword(false);
 		} else {
@@ -121,9 +120,7 @@ const Profileinfo = ({ idUser }) => {
 	const confirmPasswordOnChange = (e) => {
 		setConfirmPassword(e.target.value);
 		if (
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&,.;:!^¨*])[A-Za-z\d!@#$%^&,.;:!^¨*]{8,30}$/.test(
-				password
-			) &&
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/.test(password) &&
 			password !== e.target.value
 		) {
 			setAllowSendConfirmPassword(false);
@@ -151,9 +148,7 @@ const Profileinfo = ({ idUser }) => {
 		if (
 			confirmPassword.length === 0 ||
 			password !== confirmPassword ||
-			!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&,.;:!^¨*])[A-Za-z\d!@#$%^&,.;:!^¨*]{8,30}$/.test(
-				password
-			)
+			!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/.test(password)
 		) {
 			setNewPassword(false);
 		}
@@ -336,7 +331,7 @@ const Profileinfo = ({ idUser }) => {
 										htmlFor="inputNewPassword"
 										style={{
 											color:
-												/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&,.;:!^¨*])[A-Za-z\d!@#$%^&,.;:!^¨*]{8,30}$/.test(
+												/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/.test(
 													password
 												)
 													? "green"
@@ -362,7 +357,7 @@ const Profileinfo = ({ idUser }) => {
 										htmlFor="inputConfirmNewpassword"
 										style={{
 											color:
-												/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&,.;:!^¨*])[A-Za-z\d!@#$%^&,.;:!^¨*]{8,30}$/.test(
+												/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/.test(
 													password
 												) && password === confirmPassword
 													? "green"

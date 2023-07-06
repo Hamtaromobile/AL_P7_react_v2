@@ -83,6 +83,9 @@ exports.login = (req, res, next) => {
 
 //modif., route put
 exports.modifyUser = (req, res, next) => {
+	console.log("req.body", req.body);
+	console.log("req", req);
+	console.log("res", res);
 	//modif. img
 	let userObject = {};
 	User.findOne({
@@ -103,7 +106,7 @@ exports.modifyUser = (req, res, next) => {
 					}`,
 				};
 			} else if (
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&,.;:!^¨*])[A-Za-z\d!@#$%^&,.;:!^¨*]{8,30}$/.test(
+				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/.test(
 					req.body.password
 				)
 			) {

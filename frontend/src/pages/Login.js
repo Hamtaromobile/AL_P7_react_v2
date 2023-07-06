@@ -54,9 +54,7 @@ export default function Login() {
 	const passwordOnChange = (e) => {
 		setPassword(e.target.value);
 		if (
-			!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&,.;:!^¨*])[A-Za-z\d!@#$%^&,.;:!^¨*]{8,30}$/.test(
-				e.target.value
-			)
+			!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/.test(e.target.value)
 		) {
 			setAllowSendPassword(false);
 		} else {
@@ -149,6 +147,7 @@ export default function Login() {
 									>
 										Login
 									</Button>
+
 									<div>
 										<p className="error_login">{dataErrorAxios.message}</p>
 									</div>

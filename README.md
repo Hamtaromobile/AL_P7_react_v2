@@ -12,4 +12,8 @@ Pour lancer le fonctionnement du frontend, veuillez écrire dans le terminal : "
 
 Pour se rendre sur l'application, veuillez vous connecter sur l'url suivante : "http://localhost:3000/"
 
+compte administrateur :
+id : admin@admin.com
+mp : adminADMIN123
+
 Voici le lien du repository github : "https://github.com/Hamtaromobile/AL_P7_react_v2.git"

@@ -67,13 +67,6 @@ exports.login = (req, res, next) => {
 								expiresIn: "24h",
 							}
 						),
-						/*token2: jwt.sign(
-              { userIsAdmin: user.isAdmin },
-              "RANDOM_TOKEN_SECRET",
-              {
-                expiresIn: "24h",
-              }
-            ),*/
 					});
 				})
 				.catch((error) => res.status(500).json({ error }));
@@ -83,9 +76,6 @@ exports.login = (req, res, next) => {
 
 //modif., route put
 exports.modifyUser = (req, res, next) => {
-	console.log("req.body", req.body);
-	console.log("req", req);
-	console.log("res", res);
 	//modif. img
 	let userObject = {};
 	User.findOne({
@@ -117,7 +107,6 @@ exports.modifyUser = (req, res, next) => {
 						employment: req.body.employment,
 						email: req.body.email,
 						password: hash,
-						//imageUrl: req.body.imageUrl,
 					};
 				});
 			} else {

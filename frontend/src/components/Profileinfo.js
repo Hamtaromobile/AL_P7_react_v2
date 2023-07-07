@@ -54,7 +54,7 @@ const Profileinfo = ({ idUser }) => {
 			setNewPassword(true);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [password]);
+	}, [confirmPassword]);
 
 	const firstNameOnChange = (e) => {
 		setFirstName(e.target.value);
@@ -189,7 +189,7 @@ const Profileinfo = ({ idUser }) => {
 					},
 				})
 				.then((res) => {
-					window.location.href = `/Profile?idUser=${idUser}`;
+					window.location.reload();
 				})
 				.catch((error) => {});
 		}

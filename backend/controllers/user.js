@@ -95,6 +95,14 @@ exports.modifyUser = (req, res, next) => {
 						req.file.filename
 					}`,
 				};
+				User.updateOne(
+					{ _id: req.params.id },
+					{ ...userObject, _id: req.params.id }
+				)
+					.then(() =>
+						res.status(200).json({ message: "Utilisateur modifié !" })
+					)
+					.catch((error) => res.status(400).json({ error }));
 			} else if (
 				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/.test(
 					req.body.password
@@ -108,19 +116,31 @@ exports.modifyUser = (req, res, next) => {
 						email: req.body.email,
 						password: hash,
 					};
+					User.updateOne(
+						{ _id: req.params.id },
+						{ ...userObject, _id: req.params.id }
+					)
+						.then(() =>
+							res.status(200).json({ message: "Utilisateur modifié !" })
+						)
+						.catch((error) => res.status(400).json({ error }));
 				});
-			} else {
+			} else if (!req.file && !req.body.password) {
 				userObject = {
-					...req.body,
+					firstName: req.body.firstName,
+					lastName: req.body.lastName,
+					employment: req.body.employment,
+					email: req.body.email,
 				};
+				User.updateOne(
+					{ _id: req.params.id },
+					{ ...userObject, _id: req.params.id }
+				)
+					.then(() =>
+						res.status(200).json({ message: "Utilisateur modifié !" })
+					)
+					.catch((error) => res.status(400).json({ error }));
 			}
-			//maj user à modif., new user
-			User.updateOne(
-				{ _id: req.params.id },
-				{ ...userObject, _id: req.params.id }
-			)
-				.then(() => res.status(200).json({ message: "Utilisateur modifié !" }))
-				.catch((error) => res.status(400).json({ error }));
 		}
 	});
 };
